@@ -5,3 +5,10 @@ date: "5/14/2022"
 output:
   html_document: default
 ---
+```{r setup, include=FALSE}
+## General Notes
+# Installed Library BiocManager (> install.packages("BiocManager")
+# Installed package msa (> BiocManager::install("msa"))
+# View documentation (> browseVignettes("msa")). Click on pdf, source, or R code.
+
+```
