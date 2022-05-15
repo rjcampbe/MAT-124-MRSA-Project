@@ -1,6 +1,7 @@
 ---
 title: "MAT 124 - MRSA Project"
-author: "Ryan Campbell"
+author: "Ryan Campbell, Riley Adams, Aditya Kurkut"
 date: "5/14/2022"
-output: html_document
+output:
+  html_document: default
 ---
