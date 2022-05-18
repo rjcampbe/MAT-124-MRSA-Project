@@ -1,5 +1,6 @@
 # MAT-124---MRSA-Project
 This is our MAT 124 Midterm 2 project we worked on in May of 2022.
+
 Collaborators: Riley Adams, Aditya Kurkut, Ryan Campbell
 
 [Our Google Doc from Brainstorming sessions](https://docs.google.com/document/d/1iGiHlN8TN-v2euUHP4iwyJblVTazHaNc-f_V0pYJ0vk/edit#heading=h.e1pwaqsnaw92)
