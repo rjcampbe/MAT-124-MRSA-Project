@@ -7,8 +7,15 @@ output:
 ---
 ```{r setup, include=FALSE}
 ## General Notes
-# Installed Library BiocManager (> install.packages("BiocManager")
-# Installed package msa (> BiocManager::install("msa"))
-# View documentation (> browseVignettes("msa")). Click on pdf, source, or R code.
+  # Installed Library BiocManager (> install.packages("BiocManager")
+  # Installed package msa (> BiocManager::install("msa"))
+  # View documentation (> browseVignettes("msa")). Click on pdf, source, or R code.
+
+
+## Other packages we may want to consider:
+  # For sequences: ClustalW, Clustal omega (recommended) and MUSCLE within R.
+  # For phylogenetic trees: MEGA (external resource) or Phylogram within R.
+  # For reticular evolution: TDA (topological data analysis) within R. Dr. Arsuaga mentions RDP4 (Not sure what language/software)
+  # For BLAST: https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastn&PAGE_TYPE=BlastSearch&BLAST_SPEC=&LINK_LOC=blasttab&LAST_PAGE=blastp
 
 ```
