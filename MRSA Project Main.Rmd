@@ -6,6 +6,7 @@ output:
 html_document: default
 ---
 ```{r setup, include=FALSE}
+library("tidyr")
 ## General Notes
   # Installed Library BiocManager (> install.packages("BiocManager")
   # Installed package msa (> BiocManager::install("msa"))
@@ -21,8 +22,26 @@ html_document: default
 ```
 
 ```{r}
+# read in the data
 library(readr)
 pnas_1702472114_sd04 <- read_delim("pnas.1702472114.sd04.txt", 
     delim = ">", escape_double = FALSE, trim_ws = TRUE)
 View(pnas_1702472114_sd04)
+
+#~~~~ clean the data ~~~~~~~~~
+
+# create/names for dataframe mrsa
+mrsa <- data.frame(cbind(pnas_1702472114_sd04[2],pnas_1702472114_sd04[1]))
+mrsa[1,1] <- "USA_2001_2"
+colnames(mrsa) <- c("strain","sequences")
+
+#align sequences with their strains
+for (i in 2:length(mrsa$sequences)) {
+  if (i %% 2 == 0){
+    mrsa$sequences[i] <- mrsa$sequences[i+1]
+  }
+}
+
+# remove extra copies of sequences corresponding to NA strains
+# (need to remove odd rows from data frame after row 2)
 ```
