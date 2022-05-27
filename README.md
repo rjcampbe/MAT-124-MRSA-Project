@@ -11,6 +11,7 @@ Collaborators: Riley Adams, Aditya Kurkut, Ryan Campbell
 2. [Methicillin resistance in _Staphylococcus aureus_](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2065735/)
 3. [Host and pathogen response to bacteriophage engineered against _Mycobacterium abscessus_ lung infection](https://www.sciencedirect.com/science/article/pii/S0092867422004718)
 
-## Packages
+## Packages documentation and R resources
 1. [BiocManager::msa package in R](https://bioconductor.org/packages/release/bioc/html/msa.html)
 2. [phylogram: an R package for phylogenetic analysis with dendrograms](https://cran.r-project.org/web/packages/phylogram/vignettes/phylogram-vignette.html)
+3. [Phylogenetic Trees in R using ggtree](https://www.molecularecologist.com/2017/02/08/phylogenetic-trees-in-r-using-ggtree/)
