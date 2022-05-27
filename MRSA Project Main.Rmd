@@ -52,7 +52,8 @@ library("ape")
 library("Biostrings")
 library("ggplot2")
 library("ggtree")
-# nwk <- system.file("extdata", "sample.nwk", package="ggtree")
+# Need a Newick or Nexus tree format. "It also reads outputs from a range of tree-building software such as BEAST, EPA, HYPHY, PAML, PHYLDOG, pplacer, r8s, RAxML and RevBayes."
+# nwk <- system.file("mrsa", "sample.nwk", package="ggtree")
 # tree <- read.tree(nwk)
 # tree
 ```
