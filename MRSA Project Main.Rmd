@@ -22,7 +22,7 @@ html_document: default
 
 ```{r}
 library(readr)
-pnas_1702472114_sd04 <- read_delim("I:/My Drive/Spring 2022/MAT 124/data/pnas.1702472114.sd04.txt", 
+pnas_1702472114_sd04 <- read_delim("pnas.1702472114.sd04.txt", 
     delim = ">", escape_double = FALSE, trim_ws = TRUE)
 View(pnas_1702472114_sd04)
 ```
