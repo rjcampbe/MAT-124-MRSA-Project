@@ -47,6 +47,16 @@ for (i in 2:length(mrsa$sequences)) {
 mrsa <- mrsa %>% filter(mrsa$strain != "NA")
 ```
 
+```{r ggtree}
+library("ape")
+library("Biostrings")
+library("ggplot2")
+library("ggtree")
+# nwk <- system.file("extdata", "sample.nwk", package="ggtree")
+# tree <- read.tree(nwk)
+tree
+```
+
 
 
 
