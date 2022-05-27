@@ -19,3 +19,10 @@ html_document: default
   # For BLAST: https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastn&PAGE_TYPE=BlastSearch&BLAST_SPEC=&LINK_LOC=blasttab&LAST_PAGE=blastp
 
 ```
+
+```{r}
+library(readr)
+pnas_1702472114_sd04 <- read_delim("I:/My Drive/Spring 2022/MAT 124/data/pnas.1702472114.sd04.txt", 
+    delim = ">", escape_double = FALSE, trim_ws = TRUE)
+View(pnas_1702472114_sd04)
+```
