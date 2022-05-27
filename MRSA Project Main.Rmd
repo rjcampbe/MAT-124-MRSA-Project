@@ -6,7 +6,7 @@ output:
 html_document: default
 ---
 ```{r setup, include=FALSE}
-library("tidyr")
+library("dplyr")
 ## General Notes
   # Installed Library BiocManager (> install.packages("BiocManager")
   # Installed package msa (> BiocManager::install("msa"))
@@ -44,4 +44,36 @@ for (i in 2:length(mrsa$sequences)) {
 
 # remove extra copies of sequences corresponding to NA strains
 # (need to remove odd rows from data frame after row 2)
+mrsa <- mrsa %>% filter(mrsa$strain != "NA")
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
