@@ -54,7 +54,7 @@ library("ggplot2")
 library("ggtree")
 # nwk <- system.file("extdata", "sample.nwk", package="ggtree")
 # tree <- read.tree(nwk)
-tree
+# tree
 ```
 
 
