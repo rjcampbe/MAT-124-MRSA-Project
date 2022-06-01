@@ -25,9 +25,6 @@ seqs_aligned <- AlignSeqs(seqs)
 # (looks the same)
 BrowseSeqs(seqs_aligned, highlight = 0)
 
-#create a distance matrix for the alignment
-D <- dist.alignment(seqs, matrix = "similarity")
-
 # write the alignment to a new FASTA file
 # (maybe could have started here?)
 writeXStringSet(seqs_aligned, file = "mrsa_aligned.fasta")
