@@ -6,7 +6,7 @@ library(DECIPHER)
 library(viridis)
 library(ggplot2)
 
-setwd("I:/My Drive/Spring 2022/MAT 124/midterm2/MAT-124-MRSA-Project")
+# setwd("I:/My Drive/Spring 2022/MAT 124/midterm2/MAT-124-MRSA-Project")
 
 # load sequences
 seqs <- readDNAStringSet("pnas.1702472114.sd04.txt", format = "fasta")
