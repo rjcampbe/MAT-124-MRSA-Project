@@ -3,10 +3,12 @@ title: "MAT 124 - MRSA Project"
 author: "Ryan Campbell, Riley Adams, Aditya Kurkut"
 date: "5/14/2022"
 output:
-html_document: default
+  html_document: default
+  pdf_document: default
 ---
 ```{r setup, include=FALSE}
 library("dplyr")
+knitr::opts_chunk$set(echo = TRUE)
 ## General Notes
   # Installed Library BiocManager (> install.packages("BiocManager")
   # Installed package msa (> BiocManager::install("msa"))
@@ -18,7 +20,6 @@ library("dplyr")
   # For phylogenetic trees: MEGA (external resource) or Phylogram within R.
   # For reticular evolution: TDA (topological data analysis) within R. Dr. Arsuaga mentions RDP4 (Not sure what language/software)
   # For BLAST: https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastn&PAGE_TYPE=BlastSearch&BLAST_SPEC=&LINK_LOC=blasttab&LAST_PAGE=blastp
-
 ```
 
 ```{r}
@@ -59,7 +60,7 @@ library("ggtree")
 ```
 
 
-
+Hello $\delta$ 
 
 
 
