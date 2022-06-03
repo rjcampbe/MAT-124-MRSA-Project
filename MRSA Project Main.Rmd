@@ -5,8 +5,9 @@ date: "5/14/2022"
 output:
   html_document: default
   pdf_document: default
+bibliography: references.bib
 ---
-```{r, echo=FALSE}
+```{r,echo=FALSE}
 # paste your file path to the project here in the setwd() function as I have below
 # you can copy/paste this code into your console and run it to easily set your
 # working directory to the clone of the repository
@@ -14,16 +15,36 @@ output:
 # setwd("I:/My Drive/Spring 2022/MAT 124/midterm2/MAT-124-MRSA-Project")
 ```
 
-```{r, echo=FALSE, warning=FALSE, message=FALSE}
+```{r,message=FALSE,echo=FALSE,warning=FALSE}
 # libraries
-library(dplyr)
-library(seqinr)
-library(adegenet)
-library(ape)
-library(ggtree)
-library(DECIPHER)
-library(viridis)
-library(ggplot2)
+library("dplyr")
+library("seqinr")
+library("adegenet")
+library("ape")
+library("ggtree")
+library("DECIPHER")
+library("viridis")
+library("ggplot2")
+ 
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+# ~~~~~~~~~~~~~~~ phylogenetic tree creation ~~~~~~~~~~~~~~~~
+
+# read in the aligned data
+mrsa <- read.alignment("mrsa_aligned.fasta", format = "fasta")
+
+# create a distance matrix for the alignment
+D <- dist.alignment(mrsa, matrix = "similarity")
+dist_df <- as.data.frame(as.matrix(D))
+
+# this uses the neighbor joining method (not MLE)
+# i.e. Saitou and Nei (1987)
+tre_nj <- ape::nj(D)
+
+# This function reorganizes the internal structure of the tree 
+# to get the ladderized effect when plotted.
+tre_nj <- ladderize(tre_nj) 
 ```
 
 # Abstract
@@ -35,6 +56,8 @@ In this study we examine the evolution of community-acquired methicillin-resista
 # Methods and Results
 
 ## Phylogenetic Tree Analysis
+
+In our analysis of the phylogeny of ST-8, we use the same data as in @main paper on 224 strains of the CA-MRSA bacteria. The authors had already performed alignment "against the chromosome of the S.*aureus* TCH1516 ST8 reference genome (GenBank accession no. CP000730)." They accomplished this using the Burrows-Wheeler Aligner. Thus, we did not have an unaligned data set with which to perform the alignment, however in the course of creation of a phylogenetic tree in R, we did need to a run a function **AlignSeqs()**, from the "DECIPHER" package. This function uses the profile-to-profile alignment method. Since our sequences were already aligned, it did not appear to make any unnecessary changes to our data.
 
 ## Topological Data Analysis
 
