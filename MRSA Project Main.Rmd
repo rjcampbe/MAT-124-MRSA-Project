@@ -67,8 +67,20 @@ In our study, after we cleaned our data and wrote the necessary files to read th
 knitr::include_graphics("figures/dist.png")
 ```
 
+We then used the ape::nj() function, which performs the neighbor-joining tree estimation of @snei . Given an $n \times n$ distance matrix $D$, its **neighbor-joining matrix** is the matrix $D^*$ defined as
 
+$$ D^*_{i,j} = (n-2)\cdot D_{i,j} - TotalDistance_D(i) - TotalDistance_D(j) $$,
+where $TotalDistance_D(i)$ is the sum of distances from $i$ to all other leaves.
 
+Using this method, we create a horizontal, rooted phylogram in figure \@ref(fig:phyloHoriz) and a circular, unrooted phylogram in figure \@ref(fig:phyloCircle) , similar to those found in Fig 1 and Fig 2 of @mainpaper . While the trees are not identical, we see that the general groupings are the same. We see that African isolates are unique in that they are mostly in a grouping of their own. We also see the same trend of European and Australian isolates being peppered in across the entire tree. There is also a distinct separation for South American isolates, indicating the distinction between the North American USA300 (USA300-NAE) and South American USA300 (USA300-SAE) which was highlighted in @mainpaper . 
+
+```{r phyloHoriz, fig.cap='Phylogram', echo=FALSE,warning=FALSE,out.width='100%',out.height='100%'}
+knitr::include_graphics("figures/phyloHoriz.png")
+```
+
+```{r phyloCircle, fig.cap='Phylogram', echo=FALSE,warning=FALSE,out.width='100%',out.height='100%'}
+knitr::include_graphics("figures/phyloCircle.png")
+```
 ## Topological Data Analysis
 
 # Discussion
