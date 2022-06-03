@@ -57,7 +57,9 @@ In this study we examine the evolution of community-acquired methicillin-resista
 
 ## Phylogenetic Tree Analysis
 
-In our analysis of the phylogeny of ST-8, we use the same data as in @main paper on 224 strains of the CA-MRSA bacteria. The authors had already performed alignment "against the chromosome of the S.*aureus* TCH1516 ST8 reference genome (GenBank accession no. CP000730)." They accomplished this using the Burrows-Wheeler Aligner. Thus, we did not have an unaligned data set with which to perform the alignment, however in the course of creation of a phylogenetic tree in R, we did need to a run a function **AlignSeqs()**, from the "DECIPHER" package. This function uses the profile-to-profile alignment method. Since our sequences were already aligned, it did not appear to make any unnecessary changes to our data.
+In our analysis of the phylogeny of ST-8, we use the same data as in @mainpaper on 224 strains of the CA-MRSA bacteria. The authors had already performed alignment "against the chromosome of the S.*aureus* TCH1516 ST8 reference genome (GenBank accession no. CP000730)." They accomplished this using the Burrows-Wheeler Aligner. Thus, we did not have an unaligned data set with which to perform the alignment, however in the course of creation of a phylogenetic tree in R, we did need to a run a function **AlignSeqs()**, from the "DECIPHER" package. This function uses the profile-to-profile alignment method. Since our sequences were already aligned, it did not appear to make any unnecessary changes to our data.
+
+We then used R software along with the packages "seqinr", "adegenet", "ape", "DECIPHER", "viridis", "ggtree", and "ggplot2" to read/write the necessary FASTA files, calculate distances, cluster and visualize our data with guidance from a github repository authored by @github. 
 
 ## Topological Data Analysis
 
