@@ -1,0 +1,60 @@
+---
+title: "Code Dump"
+author: "Riley Adams, Jordan Bowman, Tracy Yu, Constanza Widel, Ruqayyah Siddique"
+date: "6/2/2022"
+output: html_document
+---
+```{r setup, include=FALSE,echo=FALSE,message=FALSE,warning=FALSE}
+# setwd("I:/My Drive/Spring 2022/MAT 124/midterm2/MAT-124-MRSA-Project")
+
+library("dplyr")
+knitr::opts_chunk$set(echo = TRUE)
+## General Notes
+  # Installed Library BiocManager (> install.packages("BiocManager")
+  # Installed package msa (> BiocManager::install("msa"))
+  # View documentation (> browseVignettes("msa")). Click on pdf, source, or R code.
+
+
+## Other packages we may want to consider:
+  # For sequences: ClustalW, Clustal omega (recommended) and MUSCLE within R.
+  # For phylogenetic trees: MEGA (external resource) or Phylogram within R.
+  # For reticular evolution: TDA (topological data analysis) within R. Dr. Arsuaga mentions RDP4 (Not sure what language/software)
+  # For BLAST: https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastn&PAGE_TYPE=BlastSearch&BLAST_SPEC=&LINK_LOC=blasttab&LAST_PAGE=blastp
+```
+
+```{r, message=FALSE,warning=FALSE,echo=FALSE}
+# read in the data
+library(readr)
+pnas_1702472114_sd04 <- read_delim("pnas.1702472114.sd04.txt", 
+    delim = ">", escape_double = FALSE, trim_ws = TRUE)
+View(pnas_1702472114_sd04)
+
+#~~~~ clean the data ~~~~~~~~~
+
+# create/names for dataframe mrsa
+mrsa <- data.frame(cbind(pnas_1702472114_sd04[2],pnas_1702472114_sd04[1]))
+mrsa[1,1] <- "USA_2001_2"
+colnames(mrsa) <- c("strain","sequences")
+
+#align sequences with their strains
+for (i in 2:length(mrsa$sequences)) {
+  if (i %% 2 == 0){
+    mrsa$sequences[i] <- mrsa$sequences[i+1]
+  }
+}
+
+# remove extra copies of sequences corresponding to NA strains
+# (need to remove odd rows from data frame after row 2)
+mrsa <- mrsa %>% filter(mrsa$strain != "NA")
+```
+
+```{r, message=FALSE,warning=FALSE,echo=FALSE}
+library("ape")
+library("Biostrings")
+library("ggplot2")
+library("ggtree")
+# Need a Newick or Nexus tree format. "It also reads outputs from a range of tree-building software such as BEAST, EPA, HYPHY, PAML, PHYLDOG, pplacer, r8s, RAxML and RevBayes."
+# nwk <- system.file("mrsa", "sample.nwk", package="ggtree")
+# tree <- read.tree(nwk)
+# tree
+```
