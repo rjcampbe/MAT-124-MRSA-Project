@@ -6,7 +6,7 @@ output:
   html_document: default
   pdf_document: default
 ---
-```{r setup, include=FALSE}
+```{r setup, include=FALSE,echo=FALSE,message=FALSE,warning=FALSE}
 library("dplyr")
 knitr::opts_chunk$set(echo = TRUE)
 ## General Notes
@@ -22,7 +22,7 @@ knitr::opts_chunk$set(echo = TRUE)
   # For BLAST: https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastn&PAGE_TYPE=BlastSearch&BLAST_SPEC=&LINK_LOC=blasttab&LAST_PAGE=blastp
 ```
 
-```{r}
+```{r, message=FALSE,warning=FALSE,echo=FALSE}
 # read in the data
 library(readr)
 pnas_1702472114_sd04 <- read_delim("pnas.1702472114.sd04.txt", 
@@ -48,7 +48,7 @@ for (i in 2:length(mrsa$sequences)) {
 mrsa <- mrsa %>% filter(mrsa$strain != "NA")
 ```
 
-```{r ggtree}
+```{r, message=FALSE,warning=FALSE,echo=FALSE}
 library("ape")
 library("Biostrings")
 library("ggplot2")
@@ -60,7 +60,9 @@ library("ggtree")
 ```
 
 
-Hello $\delta$ 
+# Introduction
+
+
 
 
 
