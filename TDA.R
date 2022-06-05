@@ -35,7 +35,7 @@ getwd()
 # setwd("/Users/ryancampbell/Documents/GitHub/MAT-124-MRSA-Project")
 # 
 # Aditya's:
-# setwd("")
+# setwd("C:/Users/adity/Documents/GitHub/MAT-124-MRSA-Project")
 
 #                       Beginning of Code
 # =====================================================================
