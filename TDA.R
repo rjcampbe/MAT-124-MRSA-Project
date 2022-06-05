@@ -1,17 +1,18 @@
 #                       Header material (setup)
 # =====================================================================
-# Troubleshooting installation. Use the command:
-# install.packages("seqinr") 
-# and then respond no.
-#
-# For BiocManager packages, Use the command:
+# Package Installation:
+# Use the commands:
 install.packages("BiocManager")
 library(BiocManager)
 BiocManager::install("Biostrings")
-Yes
 library(Biostrings)
-BiocManager::install("ggtree")
-# to install.
+BiocManager::install("RSQLite")
+library(RSQLite)
+BiocManager::install("DECIPHER")
+library(DECIPHER)
+
+
+# Packages used
 library(seqinr)
 library(adegenet)
 library(ape)
@@ -35,7 +36,7 @@ getwd()
 # setwd("/Users/ryancampbell/Documents/GitHub/MAT-124-MRSA-Project")
 # 
 # Aditya's:
-# setwd("C:/Users/adity/Documents/GitHub/MAT-124-MRSA-Project")
+# setwd("")
 
 #                       Beginning of Code
 # =====================================================================
