@@ -15,6 +15,7 @@ bibliography: references.bib
 
 ```{r,message=FALSE,echo=FALSE,warning=FALSE}
 # libraries
+library("knitr")
 library("dplyr")
 library("seqinr")
 library("adegenet")
