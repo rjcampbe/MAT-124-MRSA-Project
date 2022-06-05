@@ -69,7 +69,7 @@ We then used R software along with the packages "seqinr", "adegenet", "ape", "DE
 
 In @mainpaper , the authors used the BEAST v1.8.2 software to perform their phylogenetic analysis and build their trees using Bayesian Maximum Likelihood methods. Due to budget-constraints and lack of training, we are not able to use the same software/methods as the paper, but were able to obtain similar results using the method outlined by @github . 
 
-In our study, after we cleaned our data and wrote the necessary files to read the sequences as an "alignment" object, we used the function seqinr::dist.alignment() to create a distance matrix for the aligned sequences. This distance matrix contains the squared root of the pairwise distance between each sequence. It can be visualized in Figure \@ref(fig:dist).
+In our study, after we cleaned our data and wrote the necessary files to read the sequences as an "alignment" object, we used the function seqinr::dist.alignment() to create a distance matrix for the aligned sequences. This distance matrix contains the squared root of the pairwise distance between each sequence. It can be visualized in Figure \@ref(fig:dist) .
 
 ```{r dist, fig.cap='Distance Matrix: darker grey is more distant', echo=FALSE,warning=FALSE,out.width='100%',out.height='100%'}
 knitr::include_graphics("figures/dist.png")
@@ -92,7 +92,7 @@ knitr::include_graphics("figures/phyloCircle.png")
 
 ## Topological Data Analysis
 
-In order to perform Topological Data Analysis, we used R Studio to find homologies that were based off of the pairwise distances of the genome sequences from our research paper. With the use of the calculateHomology() function in R, we set the dimensions equal to 1, threshold to -1 and format to 'distmat'. Lastly, we set standardization to false. These 4 parameters were used in the calculateHomology() function and stored inside a variable. The final step was to pass the variable we had created inside a function called plot_barcode(), which then returned a barcode, Figure \@ref(fig:TDA_Barcode). This barcode was then to be used to extract meaningful information, given our hope that the loops, holes and voids that were plotted in the plane had the potential of documenting data that couldn't otherwise be extracted. In our case, we found that  
+In order to perform Topological Data Analysis, we used R Studio to find homologies that were based off of the pairwise distances of the genome sequences from our research paper. With the use of the calculateHomology() function in R, we set the dimensions equal to 1, threshold to -1 and format to 'distmat'. Lastly, we set standardization to false. These 4 parameters were used in the calculateHomology() function and stored inside a variable. The final step was to pass the variable we had created inside a function called plot_barcode(), which then returned a barcode, Figure \@ref(fig:TDA.R_plot) . This barcode was then to be used to extract meaningful information, given our hope that the loops, holes and voids that were plotted in the plane had the potential of documenting data that couldn't otherwise be extracted. In our case, we found that  
 
 ```{r TDA_Barcode, fig.cap='TDA', echo=FALSE,warning=FALSE,out.width='50%',out.height='50%'}
 knitr::include_graphics("figures/TDA.R_plot.png")
