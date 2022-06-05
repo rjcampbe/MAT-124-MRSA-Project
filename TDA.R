@@ -5,7 +5,12 @@
 # and then respond no.
 #
 # For BiocManager packages, Use the command:
-# BiocManager::install("Biostrings")
+install.packages("BiocManager")
+library(BiocManager)
+BiocManager::install("Biostrings")
+Yes
+library(Biostrings)
+BiocManager::install("ggtree")
 # to install.
 library(seqinr)
 library(adegenet)
