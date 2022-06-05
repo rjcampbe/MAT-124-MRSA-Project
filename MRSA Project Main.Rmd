@@ -10,6 +10,12 @@ bibliography: references.bib
 # you can copy/paste this code into your console and run it to easily set your
 # working directory to wherever you have stored the clone of the repository
 
+# Basic RMarkdown libraries
+library("markdown")
+library("rmarkdown")
+library("bookdown")
+library("knitr")
+
 # setwd("I:/My Drive/Spring 2022/MAT 124/midterm2/MAT-124-MRSA-Project")
 ```
 
@@ -51,6 +57,8 @@ In this study we examine the evolution of community-acquired methicillin-resista
 
 # Introduction
 
+Although the ST8 or USA300 strain of CA-MRSA can be found in many regions of the world, it differs greatly in it's overall epidemiology. For example, although ST8 is a commonly known strain of CA-MRSA within a European population, but it is not directly associated with USA300. Additionally, although USA300 has been introduced in Europe on multiple occasions, it does not seem to spread in their general population. If we shift our focus to Asia, although ST8 is considered to be a rare strain in the region, a clone called CA-MRSA/J has sparked recent attention for evolving from a Japanese HA-MRSA, as opposed to USA300. In South America, USA300 was first identified in 2006, although research brought forward the fact that this strain differed in molecular structure compared to the USA300 strain found in North America in the year 2000. It is currently known that the North and South American variants of USA300 are part of a lineage  (USA300-NAE and USA300-SAE) that both arose from a common ancestor approximately 40 years ago. The geographic origin and ancestor is still not known. With so many broken pieces of the puzzle in regards to the origin and evolution of USA300, a 2017 study decided to perform genome sequencing to represent the diversity of ST8 over time, and isolate 12,403 single nucleotide polymorphisms (SNP's), to represent the evolution of USA300 using methods such as maximum likelihood and Bayesian statistics. In our research, we wanted to replicate these results from the 2017 study, to see whether we would get similar results in terms of the phylogenetic tree and maximum clade tree that the study had originally published.
+
 # Methods and Results
 
 ## Multiple Sequence Alignment & Phylogenetic Tree Analysis
@@ -81,7 +89,14 @@ knitr::include_graphics("figures/phyloHoriz.png")
 ```{r phyloCircle, fig.cap='Phylogram', echo=FALSE,warning=FALSE,out.width='100%',out.height='100%'}
 knitr::include_graphics("figures/phyloCircle.png")
 ```
+
 ## Topological Data Analysis
+
+In order to perform Topological Data Analysis, we used R Studio to find homologies that were based off of the pairwise distances of the genome sequences from our research paper. With the use of the calculateHomology() function in R, we set the dimensions equal to 1, threshold to -1 and format to 'distmat'. Lastly, we set standardization to false. These 4 parameters were used in the calculateHomology() function and stored inside a variable. The final step was to pass the variable we had created inside a function called plot_barcode(), which then returned a barcode, Figure \@ref(fig:TDA_Barcode). This barcode was then to be used to extract meaningful information, given our hope that the loops, holes and voids that were plotted in the plane had the potential of documenting data that couldn't otherwise be extracted. In our case, we found that  
+
+```{r TDA_Barcode, fig.cap='TDA', echo=FALSE,warning=FALSE,out.width='50%',out.height='50%'}
+knitr::include_graphics("figures/TDA.R_plot.png")
+```
 
 # Discussion
 
