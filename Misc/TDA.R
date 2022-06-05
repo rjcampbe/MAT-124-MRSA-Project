@@ -1,3 +1,5 @@
+#                       Header material (setup)
+# =====================================================================
 # Troubleshooting installation. Use the command:
 # install.packages("seqinr") 
 # and then respond no.
@@ -10,12 +12,28 @@ library(adegenet)
 library(ape)
 library(ggtree) # Warning message received: 'ggtree' was built under R version 4.0.5. Manually added in packages tab.
 library(DECIPHER)
+library(RSQLite)
 library(viridis)
 library(ggplot2)
 
-# setwd("I:/My Drive/Spring 2022/MAT 124/midterm2/MAT-124-MRSA-Project")
-# or setwd("~/MAT-124-MRSA-Project")
+# TDA package
+library(TDAstats)
 
+# To Check Working Directory:
+getwd()
+
+# To Set your Working Directory:
+# Riley's:
+# setwd("I:/My Drive/Spring 2022/MAT 124/midterm2/MAT-124-MRSA-Project")
+# 
+# Ryan's:
+# setwd("/Users/ryancampbell/Documents/GitHub/MAT-124-MRSA-Project")
+# 
+# Aditya's:
+# setwd("")
+
+#                       Beginning of Code
+# =====================================================================
 # load sequences
 seqs <- readDNAStringSet("pnas.1702472114.sd04.txt", format = "fasta")
 
@@ -57,6 +75,7 @@ num <- matrix(unlist(dist_df), ncol = 2, nrow = 224)
 library("TDAstats")
 p <- calculate_homology(num, dim =1, threshold = -1, format = "distmat", standardize = FALSE, return_df = FALSE)
 plot_barcode(p)
+
 
 # =====================================================================
 
