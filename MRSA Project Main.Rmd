@@ -10,12 +10,17 @@ bibliography: references.bib
 # you can copy/paste this code into your console and run it to easily set your
 # working directory to wherever you have stored the clone of the repository
 
+# Basic RMarkdown libraries
+library("markdown")
+library("rmarkdown")
+library("bookdown")
+library("knitr")
+
 # setwd("I:/My Drive/Spring 2022/MAT 124/midterm2/MAT-124-MRSA-Project")
 ```
 
 ```{r,message=FALSE,echo=FALSE,warning=FALSE}
 # libraries
-library("knitr")
 library("dplyr")
 library("seqinr")
 library("adegenet")
