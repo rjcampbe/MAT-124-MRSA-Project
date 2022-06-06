@@ -107,6 +107,7 @@ knitr::include_graphics("figures/TDAbarcode.png")
 <div id="refs"></div>
 
 # (APPENDIX) Code Appendix {-}
+
 ## Data Cleaning
 
 ## MSA & Phylogenetic Tree
