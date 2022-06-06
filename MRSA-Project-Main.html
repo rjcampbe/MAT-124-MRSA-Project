@@ -570,6 +570,74 @@ ggtree(tre_nj)+
 </div>
 <div id="topological-data-analysis-1" class="section level2" number="6.3">
 <h2><span class="header-section-number">3</span> Topological Data Analysis</h2>
+<pre class="r"><code>#                       Header material (setup)
+# =====================================================================
+# Package Installation:
+# Use the commands:
+# install.packages(&quot;BiocManager&quot;)
+# BiocManager::install(&quot;Biostrings&quot;)
+# BiocManager::install(&quot;RSQLite&quot;)
+# BiocManager::install(&quot;DECIPHER&quot;)
+# install.packages(&quot;TDAstats&quot;)
+library(BiocManager)
+library(Biostrings)
+library(RSQLite)
+
+
+# Packages used
+library(seqinr)
+library(adegenet)
+library(ape)
+library(ggtree)
+library(DECIPHER)
+library(RSQLite)
+library(viridis)
+library(ggplot2)
+library(BiocManager)
+library(Biostrings)
+library(RSQLite)
+library(TDAstats)
+
+# TDA package
+# install.packages(&quot;TDAstats&quot;)
+
+#                       Beginning of Code (setup)
+# =====================================================================
+# load sequences
+seqs &lt;- readDNAStringSet(&quot;pnas.1702472114.sd04.txt&quot;, format = &quot;fasta&quot;)
+
+#look at some of the sequences
+seqs
+
+#view (aligned) sequences in a browser (uncomment to browse)
+# BrowseSeqs(seqs, highlight = 0)
+
+# perform alignment (if necessary)
+seqs_aligned &lt;- AlignSeqs(seqs)
+
+# compare to previous sequences in browser (uncomment to browse)
+# BrowseSeqs(seqs_aligned, highlight = 0)
+
+# write the alignment to a new FASTA file
+writeXStringSet(seqs_aligned, file = &quot;mrsa_aligned.fasta&quot;)
+
+#                       DISTANCE MATRIX + TDA
+# =====================================================================
+# read in the aligned data
+mrsa &lt;- read.alignment(&quot;mrsa_aligned.fasta&quot;, format = &quot;fasta&quot;)
+mrsa
+
+# create a distance matrix for the alignment
+D &lt;- dist.alignment(mrsa, matrix = &quot;similarity&quot;)
+dist_df &lt;- as.matrix(D)
+
+# The dist_df variable now contains the distance matrix in R. 
+# To find the homologies, we use the following commands: 
+p &lt;- calculate_homology(dist_df, dim =1, threshold = -1, format = &quot;distmat&quot;, standardize = FALSE, return_df = FALSE)
+
+# Plot the TDA graphs
+plot_barcode(p)
+plot_persist(p)</code></pre>
 </div>
 </div>
 
