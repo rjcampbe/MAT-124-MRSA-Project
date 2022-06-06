@@ -11,10 +11,10 @@ bibliography: references.bib
 # working directory to wherever you have stored the clone of the repository
 
 # Basic RMarkdown libraries
-library("markdown")
-library("rmarkdown")
-library("bookdown")
-library("knitr")
+# library("markdown")
+# library("rmarkdown")
+# library("bookdown")
+# library("knitr")
 
 # setwd("I:/My Drive/Spring 2022/MAT 124/midterm2/MAT-124-MRSA-Project")
 ```
