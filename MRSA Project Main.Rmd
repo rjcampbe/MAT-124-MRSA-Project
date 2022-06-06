@@ -63,6 +63,7 @@ knitr::include_graphics("figures/phyloCircle.png")
 In order to perform Topological Data Analysis, continued our analysis in R to find homologies that were based off of the pairwise distances of the genome sequences from our research paper. Based of the Distance Matrix we created as shown in Figure \@ref(fig:dist), we used the calculateHomology() function in R within the "TDAstats" package in order to calculate the homologies of our sequences dataset. Within the function, we set the dimensions equal to 1, threshold to -1, format to 'distmat', and standardization to false. We then plot_barcode(), which then returned a barcode, Figure \@ref(fig:TDAplots) (left). The   
 Figure \@ref(fig:TDAplots) (right).
 
+
 ```{r TDAbarcode, eval=FALSE,fig.cap='TDA', echo=FALSE,warning=FALSE,out.width='100%',out.height='100%'}
 # LEGACY
 knitr::include_graphics("figures/TDAbarcode.png")
