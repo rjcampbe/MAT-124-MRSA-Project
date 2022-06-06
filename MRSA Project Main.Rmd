@@ -21,7 +21,7 @@ bibliography: references.bib
 
 # Abstract
 
-In this study we examine the evolution of community-acquired methicillin-resistant Staphylococcus *aureus* (CA-MRSA), an antibiotic resistant form of the common bacteria Staphylococcus aureus. Of particular interest, is the lineage of a hypervirulent, pandemic clone of the bacteria which has been spreading globally. First discovered in the United States in the early 2000's, as a new kind of MRSA which was no longer unique to healthcare environments started gaining prominence, the CA-MRSA clone was aptly named USA300. USA300 is of a certain type of S. *aureus* known as multilocus sequence type 8, henceforth referred to as ST-8. We examine the genetic similarity and evolution of 224 isolates of ST-8 type S. *aureus* in order to gain insight into the background and spread of USA300 and related CA-MRSA clones.
+In this study we examine the evolution of community-acquired methicillin-resistant *Staphylococcus aureus* (CA-MRSA), an antibiotic resistant form of the common bacteria *Staphylococcus aureus*. Of particular interest, is the lineage of a hypervirulent, pandemic clone of the bacteria which has been spreading globally. First discovered in the United States in the early 2000's, as a new kind of MRSA which was no longer unique to healthcare environments started gaining prominence, the CA-MRSA clone was aptly named USA300. USA300 is of a certain type of *S. aureus* known as multilocus sequence type 8, henceforth referred to as ST-8. We examine the genetic similarity and evolution of 224 isolates of ST-8 type *S. aureus* in order to gain insight into the background and spread of USA300 and related CA-MRSA clones.
 
 # Introduction
 
