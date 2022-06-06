@@ -2,13 +2,13 @@
 # =====================================================================
 # Package Installation:
 # Use the commands:
-install.packages("BiocManager")
+# install.packages("BiocManager")
 library(BiocManager)
-BiocManager::install("Biostrings")
+# BiocManager::install("Biostrings")
 library(Biostrings)
-BiocManager::install("RSQLite")
+# BiocManager::install("RSQLite")
 library(RSQLite)
-BiocManager::install("DECIPHER")
+# BiocManager::install("DECIPHER")
 library(DECIPHER)
 
 
@@ -23,7 +23,7 @@ library(viridis)
 library(ggplot2)
 
 # TDA package
-install.packages("TDAstats")
+# install.packages("TDAstats")
 library(TDAstats)
 
 # To Check Working Directory:
@@ -51,7 +51,7 @@ seqs <- readDNAStringSet("pnas.1702472114.sd04.txt", format = "fasta")
 seqs
 
 #view (aligned) sequences in a browser
-BrowseSeqs(seqs, highlight = 0)
+# BrowseSeqs(seqs, highlight = 0)
 
 # perform alignment
 # (ours are already aligned? but not of class alignment,
@@ -61,7 +61,7 @@ seqs_aligned <- AlignSeqs(seqs)
 
 # compare to previous sequences in browser
 # (looks the same)
-BrowseSeqs(seqs_aligned, highlight = 0)
+# BrowseSeqs(seqs_aligned, highlight = 0)
 
 # write the alignment to a new FASTA file
 # (maybe could have started here?)
@@ -83,58 +83,8 @@ dist_df <- as.matrix(D)
 
 # The num variable now contains the distance matrix in R. 
 # To find the homologies, we use the following commands: 
+# install.packages("TDAstats")
 library("TDAstats")
 p <- calculate_homology(dist_df, dim =1, threshold = -1, format = "distmat", standardize = FALSE, return_df = FALSE)
 plot_barcode(p)
-
-# p_0 <- calculate_homology(num, dim =2, threshold = -1, format = "distmat", standardize = FALSE, return_df = FALSE)
-# plot_barcode(p_0)
-
-# ~~~~~~~~~~~~~~ Riley's Code for Phylogenetic Trees ~~~~~~~~~~~~~~~~~~
-# =====================================================================
-
-# darker shades of gray mean a larger distance 
-# you can also make cool color plots 
-# but they're much more complicated because they use the image() function
-table.paint(dist_df, cleg=0, clabel.row=.5, clabel.col=.5)+
-  scale_color_viridis()
-
-
-# this uses the neighbor joining method (not MLE)
-# i.e. Saitou and Nei (1987)
-tre_nj <- ape::nj(D)
-
-# all trees created using {ape} package will be of class phylo
-class(tre_nj) 
-
-# This function reorganizes the internal structure of the tree 
-# to get the ladderized effect when plotted.
-tre_nj <- ladderize(tre_nj) 
-
-# ~~~~~~~~~~~~~~~~~~~~~~ Base R plots ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-plot(tre_nj)
-
-# method = average is used for UPGMA, 
-# members can be equal to NULL or a vector with a length of size D
-h_cluster <- hclust(D, method = "average", members = NULL) 
-plot(h_cluster, cex = 0.6)
-# =======================================================================
-
-# ~~~~~~~~~~~~~~~~~~~~~~ Using ggtree ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-# circular layout (hard to read)
-ggtree(tre_nj, layout = "circular")+
-  geom_tiplab(size = 3)
-
-# circular unrooted layout (easier to read)
-ggtree(tre_nj,branch.length = "none", layout = "circular")+
-  geom_tiplab(size = 3)
-
-# Cladogram: rectangular layout
-ggtree(tre_nj, branch.length = "none")+
-  geom_tiplab(size = 3)
-
-# top-down rectangular layout (Dendrogram)
-ggtree(tre_nj)+ 
-  layout_dendrogram()
-
+plot_persist(p)

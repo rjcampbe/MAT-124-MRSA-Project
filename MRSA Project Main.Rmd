@@ -92,10 +92,15 @@ knitr::include_graphics("figures/phyloCircle.png")
 
 ## Topological Data Analysis
 
-In order to perform Topological Data Analysis, we used R Studio to find homologies that were based off of the pairwise distances of the genome sequences from our research paper. With the use of the calculateHomology() function in R, we set the dimensions equal to 1, threshold to -1 and format to 'distmat'. Lastly, we set standardization to false. These 4 parameters were used in the calculateHomology() function and stored inside a variable. The final step was to pass the variable we had created inside a function called plot_barcode(), which then returned a barcode, Figure \@ref(fig:TDAbarcode) . This barcode was then to be used to extract meaningful information, given our hope that the loops, holes and voids that were plotted in the plane had the potential of documenting data that couldn't otherwise be extracted. In our case, we found that  
+In order to perform Topological Data Analysis, we used R Studio to find homologies that were based off of the pairwise distances of the genome sequences from our research paper. With the use of the calculateHomology() function in R, we set the dimensions equal to 1, threshold to -1 and format to 'distmat'. Lastly, we set standardization to false. These 4 parameters were used in the calculateHomology() function and stored inside a variable. The final step was to pass the variable we had created inside a function called plot_barcode(), which then returned a barcode, Figure \@ref(fig:TDAbarcode). The   
+Figure \@ref(fig:TDApersist)
 
 ```{r TDAbarcode, fig.cap='TDA', echo=FALSE,warning=FALSE,out.width='100%',out.height='100%'}
 knitr::include_graphics("figures/TDAbarcode.png")
+```
+
+```{r TDApersist, fig.cap='TDA', echo=FALSE,warning=FALSE,out.width='100%',out.height='100%'}
+knitr::include_graphics("figures/TDApersist.png")
 ```
 
 # Discussion
