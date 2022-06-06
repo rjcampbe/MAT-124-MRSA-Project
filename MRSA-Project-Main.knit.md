@@ -5,19 +5,7 @@ date: "5/14/2022"
 output: bookdown::html_document2
 bibliography: references.bib
 ---
-```{r,echo=FALSE}
-# paste your file path to the project here in the setwd() function as I have below
-# you can copy/paste this code into your console and run it to easily set your
-# working directory to wherever you have stored the clone of the repository
 
-# Basic RMarkdown libraries
-# library("markdown")
-# library("rmarkdown")
-# library("bookdown")
-# library("knitr")
-
-# setwd("I:/My Drive/Spring 2022/MAT 124/midterm2/MAT-124-MRSA-Project")
-```
 
 # Abstract
 
@@ -39,9 +27,10 @@ In @mainpaper , the authors used the BEAST v1.8.2 software to perform their phyl
 
 In our study, after we cleaned our data and wrote the necessary files to read the sequences as an "alignment" object, we used the function seqinr::dist.alignment() to create a distance matrix for the aligned sequences. This distance matrix contains the squared root of the pairwise distance between each sequence. It can be visualized in Figure \@ref(fig:dist) .
 
-```{r dist, fig.cap='Distance Matrix: darker grey is more distant', echo=FALSE,warning=FALSE,out.width='100%',out.height='100%'}
-knitr::include_graphics("figures/dist.png")
-```
+<div class="figure">
+<img src="figures/dist.png" alt="Distance Matrix: darker grey is more distant" width="100%" height="100%" />
+<p class="caption">(\#fig:dist)Distance Matrix: darker grey is more distant</p>
+</div>
 
 We then used the ape::nj() function, which performs the neighbor-joining tree estimation of @snei . Given an $n \times n$ distance matrix $D$, its **neighbor-joining matrix** is the matrix $D^*$ defined as
 
@@ -50,13 +39,15 @@ where $TotalDistance_D(i)$ is the sum of distances from $i$ to all other leaves.
 
 Using this method, we create a horizontal, rooted phylogram in figure \@ref(fig:phyloHoriz) and a circular, unrooted phylogram in figure \@ref(fig:phyloCircle) , similar to those found in Fig 1 and Fig 2 of @mainpaper . While the trees are not identical, we see that the general groupings are the same. We see that African isolates are unique in that they are mostly in a grouping of their own. We also see the same trend of European and Australian isolates being peppered in across the entire tree. There is also a distinct separation for South American isolates, indicating the distinction between the North American USA300 (USA300-NAE) and South American USA300 (USA300-SAE) which was highlighted in @mainpaper . 
 
-```{r phyloHoriz, fig.cap='Phylogram', echo=FALSE,warning=FALSE,out.width='100%',out.height='100%'}
-knitr::include_graphics("figures/phyloHoriz.png")
-```
+<div class="figure">
+<img src="figures/phyloHoriz.png" alt="Phylogram" width="100%" height="100%" />
+<p class="caption">(\#fig:phyloHoriz)Phylogram</p>
+</div>
 
-```{r phyloCircle, fig.cap='Phylogram', echo=FALSE,warning=FALSE,out.width='100%',out.height='100%'}
-knitr::include_graphics("figures/phyloCircle.png")
-```
+<div class="figure">
+<img src="figures/phyloCircle.png" alt="Phylogram" width="100%" height="100%" />
+<p class="caption">(\#fig:phyloCircle)Phylogram</p>
+</div>
 
 ## Topological Data Analysis
 
@@ -64,19 +55,14 @@ In order to perform Topological Data Analysis, we used R Studio to find homologi
 
 The Figure \@ref(fig:TDAplots) (right).
 
-```{r TDAbarcode, eval=FALSE,fig.cap='TDA', echo=FALSE,warning=FALSE,out.width='100%',out.height='100%'}
-# LEGACY
-knitr::include_graphics("figures/TDAbarcode.png")
-```
 
-```{r TDApersist, eval=FALSE, fig.cap='TDA', echo=FALSE,warning=FALSE,out.width='100%',out.height='100%'}
-# LEGACY
-knitr::include_graphics("figures/TDApersist.png")
-```
 
-```{r TDAplots, fig.cap='Barcode Plot (left) and persistance plot (right)', fig.show = 'hold', fig.align = 'center', echo=FALSE,warning=FALSE,out.width='49%',out.height='65%'}
-knitr::include_graphics(c("figures/TDAbarcode.png", "figures/TDApersist.png"))
-```
+
+
+<div class="figure" style="text-align: center">
+<img src="figures/TDAbarcode.png" alt="Barcode Plot (left) and persistance plot (right)" width="49%" height="65%" /><img src="figures/TDApersist.png" alt="Barcode Plot (left) and persistance plot (right)" width="49%" height="65%" />
+<p class="caption">(\#fig:TDAplots)Barcode Plot (left) and persistance plot (right)</p>
+</div>
 
 # Discussion
 
@@ -92,7 +78,8 @@ The phylogenies that were produced by the authors of our chosen paper showed tha
 
 ## Data Cleaning
 
-```{r, eval=FALSE}
+
+```r
 # Here we took the data from the format we were given and 
 # turned it into a data frame (before we learned which packages to use and how to use them). 
 # We were told to create a database as part of the assignment so 
@@ -125,7 +112,8 @@ mrsa <- mrsa %>% filter(mrsa$strain != "NA")
 
 ## MSA & Phylogenetic Tree
 
-```{r, eval=FALSE}
+
+```r
 library(seqinr)
 library(adegenet)
 library(ape)
@@ -213,7 +201,8 @@ ggtree(tre_nj)+
 
 ## Topological Data Analysis
 
-```{r, eval=FALSE}
+
+```r
 #                       Header material (setup)
 # =====================================================================
 # Package Installation:
