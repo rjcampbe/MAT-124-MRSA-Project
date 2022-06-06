@@ -5,19 +5,7 @@ date: "5/14/2022"
 output: bookdown::html_document2
 bibliography: references.bib
 ---
-```{r,echo=FALSE}
-# paste your file path to the project here in the setwd() function as I have below
-# you can copy/paste this code into your console and run it to easily set your
-# working directory to wherever you have stored the clone of the repository
 
-# Basic RMarkdown libraries
-# library("markdown")
-# library("rmarkdown")
-# library("bookdown")
-# library("knitr")
-
-# setwd("I:/My Drive/Spring 2022/MAT 124/midterm2/MAT-124-MRSA-Project")
-```
 
 # Abstract
 
@@ -31,7 +19,7 @@ Although the ST8 or USA300 strain of CA-MRSA can be found in many regions of the
 
 ## Multiple Sequence Alignment & Phylogenetic Tree Analysis
 
-In our analysis of the phylogeny of ST-8, we use the same data as in @mainpaper on 224 strains of the CA-MRSA bacteria. The authors had already performed alignment "against the chromosome of the *S. aureus* TCH1516 ST8 reference genome (GenBank accession no. CP000730)." They accomplished this using the Burrows-Wheeler Aligner. Thus, we did not have an unaligned data set with which to perform the alignment, however in the course of creation of a phylogenetic tree in R, we did need to a run a function **AlignSeqs()**, from the "DECIPHER" package. This function uses the profile-to-profile alignment method. Since our sequences were already aligned, it did not appear to make any unnecessary changes to our data.
+In our analysis of the phylogeny of ST-8, we use the same data as in @mainpaper on 224 strains of the CA-MRSA bacteria. The authors had already performed alignment "against the chromosome of the S.*aureus* TCH1516 ST8 reference genome (GenBank accession no. CP000730)." They accomplished this using the Burrows-Wheeler Aligner. Thus, we did not have an unaligned data set with which to perform the alignment, however in the course of creation of a phylogenetic tree in R, we did need to a run a function **AlignSeqs()**, from the "DECIPHER" package. This function uses the profile-to-profile alignment method. Since our sequences were already aligned, it did not appear to make any unnecessary changes to our data.
 
 We then used R software along with the packages "seqinr", "adegenet", "ape", "DECIPHER", "viridis", "ggtree", and "ggplot2" to read/write the necessary FASTA files, calculate distances, cluster and visualize our data with guidance from a github repository authored by @github. In doing so we attempt to recreate the results found by @mainpaper. 
 
@@ -39,9 +27,10 @@ In @mainpaper , the authors used the BEAST v1.8.2 software to perform their phyl
 
 In our study, after we cleaned our data and wrote the necessary files to read the sequences as an "alignment" object, we used the function seqinr::dist.alignment() to create a distance matrix for the aligned sequences. This distance matrix contains the squared root of the pairwise distance between each sequence. It can be visualized in Figure \@ref(fig:dist) .
 
-```{r dist, fig.cap='Distance Matrix: darker grey is more distant', echo=FALSE,warning=FALSE,out.width='100%',out.height='100%'}
-knitr::include_graphics("figures/dist.png")
-```
+<div class="figure">
+<img src="figures/dist.png" alt="Distance Matrix: darker grey is more distant" width="100%" height="100%" />
+<p class="caption">(\#fig:dist)Distance Matrix: darker grey is more distant</p>
+</div>
 
 We then used the ape::nj() function, which performs the neighbor-joining tree estimation of @snei . Given an $n \times n$ distance matrix $D$, its **neighbor-joining matrix** is the matrix $D^*$ defined as
 
@@ -50,36 +39,34 @@ where $TotalDistance_D(i)$ is the sum of distances from $i$ to all other leaves.
 
 Using this method, we create a horizontal, rooted phylogram in figure \@ref(fig:phyloHoriz) and a circular, unrooted phylogram in figure \@ref(fig:phyloCircle) , similar to those found in Fig 1 and Fig 2 of @mainpaper . While the trees are not identical, we see that the general groupings are the same. We see that African isolates are unique in that they are mostly in a grouping of their own. We also see the same trend of European and Australian isolates being peppered in across the entire tree. There is also a distinct separation for South American isolates, indicating the distinction between the North American USA300 (USA300-NAE) and South American USA300 (USA300-SAE) which was highlighted in @mainpaper . 
 
-```{r phyloHoriz, fig.cap='Phylogram', echo=FALSE,warning=FALSE,out.width='100%',out.height='100%'}
-knitr::include_graphics("figures/phyloHoriz.png")
-```
+<div class="figure">
+<img src="figures/phyloHoriz.png" alt="Phylogram" width="100%" height="100%" />
+<p class="caption">(\#fig:phyloHoriz)Phylogram</p>
+</div>
 
-```{r phyloCircle, fig.cap='Phylogram', echo=FALSE,warning=FALSE,out.width='100%',out.height='100%'}
-knitr::include_graphics("figures/phyloCircle.png")
-```
+<div class="figure">
+<img src="figures/phyloCircle.png" alt="Phylogram" width="100%" height="100%" />
+<p class="caption">(\#fig:phyloCircle)Phylogram</p>
+</div>
 
 ## Topological Data Analysis
 
-In order to perform Topological Data Analysis, continued our analysis in R to find homologies that were based off of the pairwise distances of the genome sequences from our research paper. Based of the Distance Matrix we created as shown in Figure \@ref(fig:dist), we used the calculateHomology() function in R within the "TDAstats" package in order to calculate the homologies of our sequences dataset. Within the function, we set the dimensions equal to 1, threshold to -1, format to 'distmat', and standardization to false. We then plot_barcode(), which then returned a barcode, Figure \@ref(fig:TDAplots) (left). The   
-Figure \@ref(fig:TDAplots) (right).
+In order to perform Topological Data Analysis, we used R Studio to find homologies that were based off of the pairwise distances of the genome sequences from our research paper. With the use of the calculateHomology() function in R, we set the dimensions equal to 1, threshold to -1 and format to 'distmat'. Lastly, we set standardization to false. These 4 parameters were used in the calculateHomology() function and stored inside a variable. The final step was to pass the variable we had created inside a function called plot_barcode(), which then returned a barcode, Figure \@ref(fig:TDAplots) (left). As a part of this figure, every bar represents one of the 224 strains that we studied, and reading the graph up and left shows us a trend where our bars slowly start dissapearing as our variants become more geneticaly similar to other strains. Eventually, these bars merge, due to their extreme similarly.
 
-```{r TDAbarcode, eval=FALSE,fig.cap='TDA', echo=FALSE,warning=FALSE,out.width='100%',out.height='100%'}
-# LEGACY
-knitr::include_graphics("figures/TDAbarcode.png")
-```
+The Figure \@ref(fig:TDAplots) (right).
 
-```{r TDApersist, eval=FALSE, fig.cap='TDA', echo=FALSE,warning=FALSE,out.width='100%',out.height='100%'}
-# LEGACY
-knitr::include_graphics("figures/TDApersist.png")
-```
 
-```{r TDAplots, fig.cap='Barcode Plot (left) and persistance plot (right)', fig.show = 'hold', fig.align = 'center', echo=FALSE,warning=FALSE,out.width='49%',out.height='65%'}
-knitr::include_graphics(c("figures/TDAbarcode.png", "figures/TDApersist.png"))
-```
+
+
+
+<div class="figure" style="text-align: center">
+<img src="figures/TDAbarcode.png" alt="Barcode Plot (left) and persistance plot (right)" width="49%" height="65%" /><img src="figures/TDApersist.png" alt="Barcode Plot (left) and persistance plot (right)" width="49%" height="65%" />
+<p class="caption">(\#fig:TDAplots)Barcode Plot (left) and persistance plot (right)</p>
+</div>
 
 # Discussion
 
-The phylogenies that were produced by the authors of our chosen paper showed that ST8 must have originated from Central Europe while USA300 originated somewhere in North America. In addition to this, there was a clear distinction between the USA300 strain as it was separated into two distinct lineages (USA300-NAE and USA300-SAE) with one being the North American Variant, and the other being the South American Variant. It was also estimated that both the North and South American variants of USA300 shared a common ancestor approximately 50 years ago. With so many differing strains identified over the last century, the author's of the paper were able to make a few key claims based on their results. First, the USA300 strain is unlikely to have evolved from a strain known as USA500 which is known to have circulated in Europe approximately 100 years ago. Similarly, the evolution of ST8 CA-MRSA in Western Australia Trinidad and Tobago as well as West Africa were not supported by data the that was collected. Instead, the origin of the North and South American variants of USA300 is hypothesized to have taken a longer route in it's ancestral history. The story told by the data claims that the USA300 strains in both North and South America likely share an ancestor known as PVL-Positive MSSA. On the other hand, PVL-Negative ST8 was imported from Europe in the 20th century with the influx of emigration to the US due to war, economic crises and prosecution. Our own analysis of ST8 as well as the analysis of the authors agreed on the fact that the ST8 strain has many isolates in regions such as Europe, Australia and Asia, with minimal clustering of closely relates isolates. This tells us that the ST8 strain depending on the region was shaped by some degree of it's ancestral traits as well as genetic traits that were brough forth by it's environment. Many of the populations that exist around the globe today are a result of derived traits that likely came about with the purpose of better adapting to their respective regions. Our final conclusion then becomes that although ST8 and USA300 likely originated from some common ancestor many centuries ago, the environment has had a major impact in shaping it's genetic makeup, branching into more and more variants and increasing genetic diversity as a result of evolution. 
+The phylogenies that were produced by the authors of our chosen paper showed that ST8 must have originated from Central Europe while USA300 originated somewhere in North America. In addition to this, there was a clear distinction between the USA300 strain as it was separated into two distinct lineages (USA300-NAE and USA300-SAE) with one being the North American Variant, and the other being the South American Variant. It was also estimated that both the North and South American variants of USA300 shared a common ancestor approximately 50 years ago. With so much variation among the ancestral strains identified over the last century, the authors of our chosen paper were able to make a few key claims based on their results. First, the USA300 strain is unlikely to have evolved from a strain known as USA500 which is known to have circulated in Europe approximately 100 years ago. Instead, the origin of the North and South American variants of USA300 is hypothesized to have taken a longer route in it's ancestral history. Additionally, the evolution of ST8 CA-MRSA in Western Australia, Trinididad and Tobago as well as West Africa were not supported by the data that was collected. The story told by the data shows that the USA300 strain in both North and South America likely shared an ancestor known as PVL-Positive MSSA. On the other hand, it is known that PVL-Negative ST8 was imported from Europe in the 20th century with the influx of emigration to the US due to war, economic crisis and prosecution. Our own analysis of ST8 as well as the analysis of the authors agreed on the fact that the ST8 strain has many isolates in regions such as Europe and Australia, with heavy clustering of closely related isolates. This tells us that the ST8 strain, depending on the region in question was shaped by it's ancestral traits to some degree as well as the genetic traits that were brought forth by it's environment. Many of the strains that exist around the globe today are a result of derived traits that likely came about with the purpose of better adapting to their respective regions. Our final conclusion then becomes that although ST8 and USA300 likely originated from some common ancestor many centuries ago, the environment has had a major impact in shaping it's genetic makeup, branching into more and more variants and increasing genetic diversity as a result of evolution. Through the phylogenetic tree that we produced, we were able to find many similarities in the way our strains clustered together as we focused on any given region. This was especially apparent as we moved towards the bottom of the phylogenetic tree where some of the newer strains became more genetically similar, and were hence on the same branch. As a part of our TDA Analysis, we replotted each of the 224 strains that were studied in the original paper. Each strain in our case represented a single bar. After our figure was generated, we started seeing a trend with the way our bars start disappearing as we moved up and right on the plotted graph. This tells us that some of our strains were very similar and hence merged into a single strain. The key takeaway from this figure was that, all of the 224 strains that we studied started from one ancestor, after which there were some major evolutionary events that occurred. After these major events, we started seeing lots of clustering events which tell us that although we have many new strains that branched from a common ancestor, the newer strains are far more genetically similar as compared to their ancestors that may have undergone larger genetic changes. As time passes, we expect to see the number of strains present in the environment to increase, but we also expect them to have lesser genetic differences between them.
 
 # Author Contribution
 
@@ -91,7 +78,8 @@ The phylogenies that were produced by the authors of our chosen paper showed tha
 
 ## Data Cleaning
 
-```{r, eval=FALSE}
+
+```r
 # Here we took the data from the format we were given and 
 # turned it into a data frame (before we learned which packages to use and how to use them). 
 # We were told to create a database as part of the assignment so 
@@ -124,7 +112,8 @@ mrsa <- mrsa %>% filter(mrsa$strain != "NA")
 
 ## MSA & Phylogenetic Tree
 
-```{r, eval=FALSE}
+
+```r
 library(seqinr)
 library(adegenet)
 library(ape)
@@ -212,7 +201,8 @@ ggtree(tre_nj)+
 
 ## Topological Data Analysis
 
-```{r, eval=FALSE}
+
+```r
 #                       Header material (setup)
 # =====================================================================
 # Package Installation:
