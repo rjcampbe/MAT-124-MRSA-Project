@@ -92,15 +92,21 @@ knitr::include_graphics("figures/phyloCircle.png")
 
 ## Topological Data Analysis
 
-In order to perform Topological Data Analysis, we used R Studio to find homologies that were based off of the pairwise distances of the genome sequences from our research paper. With the use of the calculateHomology() function in R, we set the dimensions equal to 1, threshold to -1 and format to 'distmat'. Lastly, we set standardization to false. These 4 parameters were used in the calculateHomology() function and stored inside a variable. The final step was to pass the variable we had created inside a function called plot_barcode(), which then returned a barcode, Figure \@ref(fig:TDAbarcode). The   
-Figure \@ref(fig:TDApersist)
+In order to perform Topological Data Analysis, we used R Studio to find homologies that were based off of the pairwise distances of the genome sequences from our research paper. With the use of the calculateHomology() function in R, we set the dimensions equal to 1, threshold to -1 and format to 'distmat'. Lastly, we set standardization to false. These 4 parameters were used in the calculateHomology() function and stored inside a variable. The final step was to pass the variable we had created inside a function called plot_barcode(), which then returned a barcode, Figure \@ref(fig:TDAplots) (left). The   
+Figure \@ref(fig:TDAplots) (right).
 
-```{r TDAbarcode, fig.cap='TDA', echo=FALSE,warning=FALSE,out.width='100%',out.height='100%'}
+```{r TDAbarcode, eval=FALSE,fig.cap='TDA', echo=FALSE,warning=FALSE,out.width='100%',out.height='100%'}
+#LEGACY
 knitr::include_graphics("figures/TDAbarcode.png")
 ```
 
-```{r TDApersist, fig.cap='TDA', echo=FALSE,warning=FALSE,out.width='100%',out.height='100%'}
+```{r TDApersist, eval=FALSE, fig.cap='TDA', echo=FALSE,warning=FALSE,out.width='100%',out.height='100%'}
+# LEGACY
 knitr::include_graphics("figures/TDApersist.png")
+```
+
+```{r TDAplots, fig.cap='Barcode Plot (left) and persistance plot (right)', fig.show = 'hold', fig.align = 'center', echo=FALSE,warning=FALSE,out.width='49%',out.height='65%'}
+knitr::include_graphics(c("figures/TDAbarcode.png", "figures/TDApersist.png"))
 ```
 
 # Discussion
@@ -115,7 +121,124 @@ knitr::include_graphics("figures/TDApersist.png")
 
 ## Data Cleaning
 
+```{r, eval=FALSE}
+# Here we took the data from the format we were given and 
+# turned it into a data frame (before we learned which packages to use and how to use them). 
+# We were told to create a database as part of the assignment so 
+# this is the one we created, although we didn't end up using it in this form.
+
+# read in the data
+library(readr)
+pnas_1702472114_sd04 <- read_delim("pnas.1702472114.sd04.txt", 
+    delim = ">", escape_double = FALSE, trim_ws = TRUE)
+View(pnas_1702472114_sd04)
+
+#~~~~ clean the data ~~~~~~~~~
+
+# create/names for dataframe mrsa
+mrsa <- data.frame(cbind(pnas_1702472114_sd04[2],pnas_1702472114_sd04[1]))
+mrsa[1,1] <- "USA_2001_2"
+colnames(mrsa) <- c("strain","sequences")
+
+#align sequences with their strains
+for (i in 2:length(mrsa$sequences)) {
+  if (i %% 2 == 0){
+    mrsa$sequences[i] <- mrsa$sequences[i+1]
+  }
+}
+
+# remove extra copies of sequences corresponding to NA strains
+# (need to remove odd rows from data frame after row 2)
+mrsa <- mrsa %>% filter(mrsa$strain != "NA")
+```
+
 ## MSA & Phylogenetic Tree
+
+```{r, eval=FALSE}
+library(seqinr)
+library(adegenet)
+library(ape)
+library(ggtree)
+library(DECIPHER)
+library(viridis)
+library(ggplot2)
+
+# setwd("I:/My Drive/Spring 2022/MAT 124/midterm2/MAT-124-MRSA-Project")
+
+# load sequences
+seqs <- readDNAStringSet("pnas.1702472114.sd04.txt", format = "fasta")
+
+#look at some of the sequences
+seqs
+
+#view (aligned) sequences in a browser
+BrowseSeqs(seqs, highlight = 0)
+
+# perform alignment
+# (ours are already aligned? but not of class alignment,
+# wich is required as input for dist.alignment() function)
+# i guess if they are already aligned nothing will change?
+seqs_aligned <- AlignSeqs(seqs)
+
+# compare to previous sequences in browser
+# (looks the same)
+BrowseSeqs(seqs_aligned, highlight = 0)
+
+# write the alignment to a new FASTA file
+# (maybe could have started here?)
+writeXStringSet(seqs_aligned, file = "mrsa_aligned.fasta")
+
+# read in the aligned data
+mrsa <- read.alignment("mrsa_aligned.fasta", format = "fasta")
+
+# create a distance matrix for the alignment
+D <- dist.alignment(mrsa, matrix = "similarity")
+dist_df <- as.data.frame(as.matrix(D))
+
+# darker shades of gray mean a larger distance 
+# you can also make cool color plots 
+# but they're much more complicated because they use the image() function
+table.paint(dist_df, cleg=0, clabel.row=.5, clabel.col=.5)+
+  scale_color_viridis()
+
+# this uses the neighbor joining method (not MLE)
+# i.e. Saitou and Nei (1987)
+tre_nj <- ape::nj(D)
+
+# all trees created using {ape} package will be of class phylo
+class(tre_nj) 
+
+# This function reorganizes the internal structure of the tree 
+# to get the ladderized effect when plotted.
+tre_nj <- ladderize(tre_nj) 
+
+# ~~~~~~~~~~~~~~~~~~~~~~ Base R plots ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+plot(tre_nj)
+
+# method = average is used for UPGMA, 
+# members can be equal to NULL or a vector with a length of size D
+h_cluster <- hclust(D, method = "average", members = NULL) 
+plot(h_cluster, cex = 0.6)
+# =======================================================================
+
+# ~~~~~~~~~~~~~~~~~~~~~~ Using ggtree ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# circular layout (hard to read)
+ggtree(tre_nj, layout = "circular")+
+  geom_tiplab(size = 3)
+
+# circular unrooted layout (easier to read)
+ggtree(tre_nj,branch.length = "none", layout = "circular")+
+  geom_tiplab(size = 3)
+
+# Cladogram: rectangular layout
+ggtree(tre_nj, branch.length = "none")+
+  geom_tiplab(size = 3)
+
+# top-down rectangular layout (Dendrogram)
+ggtree(tre_nj)+ 
+  layout_dendrogram()
+```
 
 ## Topological Data Analysis
 
