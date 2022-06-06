@@ -95,7 +95,7 @@ Our final conclusion then becomes that although ST8 and USA300 likely originated
 
 **Aditya Kurkut**: Aditya wrote the Introduction and Discussion Section, and contributed to the Topological Data Analysis section.
 
-**Ryan Campbell**: Ryan set up the GitHub Repository and was the sole contributor to the TDA.R file. He also contributed to most of the section for Topological Data Analysis. Ryan created the barcode and persistance plots in R as part of the Topological Data Analysis. These are referenced in our paper as figure 3.4 (left) and (right).
+**Ryan Campbell**: Ryan set up the GitHub Repository @repo and was the sole contributor to the TDA.R file. He also contributed to most of the section for Topological Data Analysis. Ryan created the barcode and persistance plots in R as part of the Topological Data Analysis. These are referenced in our paper as figure 3.4 (left) and (right).
 
 
 
