@@ -17,3 +17,4 @@ Collaborators: Riley Adams, Aditya Kurkut, Ryan Campbell
 ## Misc Resources
 1. [Our Google Doc from Brainstorming sessions](https://docs.google.com/document/d/1iGiHlN8TN-v2euUHP4iwyJblVTazHaNc-f_V0pYJ0vk/edit#heading=h.e1pwaqsnaw92)
 2. [pnas.1702472114.sd04_gsheet_export](https://docs.google.com/spreadsheets/d/1GT-wqnpEquLFi-ux-lKSGoVjzDZtphCzeY3wnDaZVxk/edit#gid=110675188)
+3. [Our Google Shared Drive (Aditya, Riley, and Ryan](https://drive.google.com/drive/folders/0AI5aVACCSDMkUk9PVA)
